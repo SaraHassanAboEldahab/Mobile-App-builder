@@ -1,20 +1,24 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StatusBar } from "expo-status-bar";
+import { StyleSheet, Text, View } from "react-native";
+import { WebView } from "react-native-webview";
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <WebView
+      // style={styles.container}
+      source={{ uri: "https://store.arabhardware.net/en" }}
+    />
+    //   <Text>Hello from my first app!!</Text>
+    //   <StatusBar style="auto" />
+    // </WebView>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     backgroundColor: "gray",
+//     alignItems: "center",
+//     justifyContent: "center",
+//   },
+// });
