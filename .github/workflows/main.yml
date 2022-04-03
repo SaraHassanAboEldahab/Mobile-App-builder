@@ -34,7 +34,5 @@ jobs:
           token: ${{ secrets.EXPO_TOKEN }}
       - name: Install deps
         run: yarn install
-      - name: expo login
-        run: expo login -u sarah-aboeldahab -p 0123456789
       - name: Build Android APK Bundle
         run: expo build:android
