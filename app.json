@@ -1,8 +1,7 @@
 {
   "expo": {
-    "uri": "https://store.arabhardware.net/",
-    "name": "first-app",
-    "slug": "first-app",
+    "name": "Arab Hardware",
+    "slug": "arab-hardware-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -17,14 +16,14 @@
     "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "Sarah.App"
+      "bundleIdentifier": "Arabhardware.App"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "Sarah.App"
+      "package": "Arabhardware.App"
     },
     "web": {
       "favicon": "./assets/favicon.png"

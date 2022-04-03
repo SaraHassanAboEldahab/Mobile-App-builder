@@ -1,7 +1,6 @@
 import { WebView } from "react-native-webview";
-const app = require("./app.json");
 
 export default function App() {
-  const uri = app.expo.uri;
+  const uri = "https://store.arabhardware.net/";
   return <WebView source={{ uri }} />;
 }
