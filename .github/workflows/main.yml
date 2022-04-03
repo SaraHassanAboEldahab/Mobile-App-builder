@@ -36,6 +36,3 @@ jobs:
         run: yarn install
       - name: Build Android APK Bundle
         run: expo build:android
-        with:
-          expo-username: ${{ secrets.EXPO_CLI_USERNAME }}
-          expo-password: ${{ secrets.EXPO_CLI_PASSWORD }}
