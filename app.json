@@ -1,5 +1,6 @@
 {
   "expo": {
+    "uri": "https://store.arabhardware.net/",
     "name": "first-app",
     "slug": "first-app",
     "version": "1.0.0",
@@ -13,11 +14,10 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "Sarah.App"
     },
     "android": {
       "adaptiveIcon": {
