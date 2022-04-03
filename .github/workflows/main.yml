@@ -6,9 +6,9 @@ name: CI
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -24,7 +24,7 @@ jobs:
           node-version: 14.x
       - uses: actions/setup-java@v1.4.3
         with:
-          java-version: '9.0.4' # The JDK version to make available on the path.
+          java-version: "9.0.4" # The JDK version to make available on the path.
           java-package: jdk # (jre, jdk, or jdk+fx) - defaults to jdk
           architecture: x64 # (x64 or x86) - defaults to x64
       - uses: expo/expo-github-action@v7
@@ -36,3 +36,5 @@ jobs:
         run: yarn install
       - name: Build Android APK Bundle
         run: expo build:android
+      - name: Build IOS Bundle
+        run: expo build:ios
