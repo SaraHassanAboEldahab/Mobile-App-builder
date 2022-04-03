@@ -37,5 +37,5 @@ jobs:
       - name: Build Android APK Bundle
         run: expo build:android
         env:
-            EXPO_APPLE_ID: ${{secrets.EXPO_APPLE_ID}}
-            EXPO_APPLE_ID_PASSWORD: ${{secrets.EXPO_APPLE_PASSWORD}}
+            expo-username: ${{ secrets.EXPO_CLI_USERNAME }}
+            expo-password: ${{ secrets.EXPO_CLI_PASSWORD }}
