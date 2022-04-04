@@ -19,7 +19,7 @@ jobs:
           java-version: "9.0.4" # The JDK version to make available on the path.
           java-package: jdk # (jre, jdk, or jdk+fx) - defaults to jdk
           architecture: x64 # (x64 or x86) - defaults to x64
-      - uses: expo/expo-github-action@v5
+      - uses: expo/expo-github-action@v7
         with:
           expo-version: 5.x
           eas-version: latest
@@ -41,7 +41,7 @@ jobs:
           java-version: "9.0.4" # The JDK version to make available on the path.
           java-package: jdk # (jre, jdk, or jdk+fx) - defaults to jdk
           architecture: x64 # (x64 or x86) - defaults to x64
-      - uses: expo/expo-github-action@v5
+      - uses: expo/expo-github-action@v7
         with:
           expo-version: 5.x
           eas-version: latest
@@ -67,7 +67,7 @@ jobs:
           xcode-version: "11.2.1" # Exact version of a Xcode version to use
           apple-id: ${{ secrets.EXPO_APPLE_ID }} # Apple ID to download from Apple Developer when Xcode not available in local
           apple-id-password: ${{ secrets.EXPO_APPLE_PASSWORD }}
-      - uses: expo/expo-github-action@v5
+      - uses: expo/expo-github-action@v7
         with:
           expo-version: 5.x
           eas-version: latest
@@ -97,7 +97,7 @@ jobs:
           xcode-version: "11.2.1" # Exact version of a Xcode version to use
           apple-id: ${{ secrets.EXPO_APPLE_ID }} # Apple ID to download from Apple Developer when Xcode not available in local
           apple-id-password: ${{ secrets.EXPO_APPLE_PASSWORD }}
-      - uses: expo/expo-github-action@v5
+      - uses: expo/expo-github-action@v7
         with:
           expo-version: 5.x
           eas-version: latest
