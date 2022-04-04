@@ -21,7 +21,7 @@ jobs:
           architecture: x64 # (x64 or x86) - defaults to x64
       - uses: expo/expo-github-action@v5
         with:
-          expo-version: 3.x
+          expo-version: 5.x
           token: ${{ secrets.EXPO_TOKEN }}
       - name: Install deps
         run: yarn install
@@ -42,7 +42,7 @@ jobs:
           architecture: x64 # (x64 or x86) - defaults to x64
       - uses: expo/expo-github-action@v5
         with:
-          expo-version: 3.x
+          expo-version: 5.x
           token: ${{ secrets.EXPO_TOKEN }}
       - name: Install deps
         run: yarn install
@@ -67,7 +67,7 @@ jobs:
           apple-id-password: ${{ secrets.EXPO_APPLE_PASSWORD }}
       - uses: expo/expo-github-action@v5
         with:
-          expo-version: 3.x
+          expo-version: 5.x
           token: ${{ secrets.EXPO_TOKEN }}
       - name: Install deps
         run: yarn install
@@ -96,7 +96,7 @@ jobs:
           apple-id-password: ${{ secrets.EXPO_APPLE_PASSWORD }}
       - uses: expo/expo-github-action@v5
         with:
-          expo-version: 3.x
+          expo-version: 5.x
           token: ${{ secrets.EXPO_TOKEN }}
       - name: Install deps
         run: yarn install
