@@ -115,7 +115,8 @@ jobs:
           expo_apple_password: ${{ secrets.EXPO_APPLE_PASSWORD }}
           app_specific_password: ${{ secrets.EXPO_APP_SPECIFIC_PASSWORD }}
           tfa_phone_number: "+11 (123) 456-789"
-  sendEmail:
+  send-bundle-via-email:
+    # TODO  add build-for-IOS
     needs: [Build-for-android]
     runs-on: macos-latest
     steps:
