@@ -11,7 +11,6 @@ jobs:
   Build-for-android:
     runs-on: macos-latest
     steps:
-      - id: BuildForAndroid
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
@@ -21,6 +20,7 @@ jobs:
           java-version: "9.0.4" # The JDK version to make available on the path.
           java-package: jdk # (jre, jdk, or jdk+fx) - defaults to jdk
           architecture: x64 # (x64 or x86) - defaults to x64
+      - id: BuildForAndroid
       - uses: expo/expo-github-action@v7
         with:
           expo-version: 5.x
