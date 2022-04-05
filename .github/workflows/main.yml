@@ -11,6 +11,7 @@ jobs:
   Build-for-android:
     runs-on: macos-latest
     steps:
+      - id: BuildForAndroid
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
@@ -29,7 +30,6 @@ jobs:
         run: yarn install
       - name: Build Android APK Bundle
         run: expo build:android
-      - id: BuildForAndroid
   Push-to-Playstore:
     needs: [Build-for-android]
     runs-on: macos-latest
