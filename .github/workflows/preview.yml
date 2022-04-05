@@ -1,6 +1,10 @@
 ---
 name: Create Expo preview
-on: [pull_request]
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
 jobs:
   preview:
     name: Create preview
