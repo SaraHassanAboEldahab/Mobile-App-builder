@@ -139,9 +139,9 @@ jobs:
           # Optional whether this connection use TLS (default is true if server_port is 465)
           secure: true
           # Optional plain body:
-          body: Build job of ${{github.repository}} completed successfully! ${{ steps.android.outputs.stdout }}
+          body: Build job of ${{github.repository}} completed successfully! ${{ steps.android.outputs }}
           # Optional HTML body read from file:
-          html_body: ${{ steps.android.outputs.stdout }}
+          html_body: ${{ steps.android.outputs }}
           # Optional carbon copy recipients:
           cc: moataz@wuilt.com
           # # Optional blind carbon copy recipients:
