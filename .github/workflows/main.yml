@@ -11,6 +11,7 @@ jobs:
   Build-for-android:
     runs-on: macos-latest
     steps:
+      - id: BuildForAndroid
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
@@ -25,7 +26,6 @@ jobs:
           expo-version: 5.x
           eas-version: latest
           token: ${{ secrets.EXPO_TOKEN }}
-        id: android
       - name: Install deps
         run: yarn install
       - name: Build Android APK Bundle
@@ -52,7 +52,7 @@ jobs:
         run: yarn install
       - name: Upload to Google Play Console
         run: expo upload:android --latest --key <Path to Google Sevice Account Json>
-  build-for-IOS:
+  Build-for-IOS:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
@@ -82,8 +82,8 @@ jobs:
         env:
           EXPO_APPLE_ID: ${{secrets.EXPO_APPLE_ID}}
           EXPO_APPLE_ID_PASSWORD: ${{secrets.EXPO_APPLE_PASSWORD}}
-  publish-to-testflight:
-    needs: [build-for-IOS]
+  Publish-to-testflight:
+    needs: [Build-for-IOS]
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
@@ -115,8 +115,8 @@ jobs:
           expo_apple_password: ${{ secrets.EXPO_APPLE_PASSWORD }}
           app_specific_password: ${{ secrets.EXPO_APP_SPECIFIC_PASSWORD }}
           tfa_phone_number: "+11 (123) 456-789"
-  send-bundle-via-email:
-    # TODO  add build-for-IOS
+  Send-bundle-via-email:
+    # TODO  add Build-for-IOS
     needs: [Build-for-android]
     runs-on: macos-latest
     steps:
@@ -139,9 +139,9 @@ jobs:
           # Optional whether this connection use TLS (default is true if server_port is 465)
           secure: true
           # Optional plain body:
-          body: Build job of ${{github.repository}} completed successfully! ${{ steps.android.outputs }}
+          body: Build job of ${{github.repository}} completed successfully! ${{ steps.BuildForAndroid.outputs }}
           # Optional HTML body read from file:
-          html_body: ${{ steps.android.outputs }}
+          html_body: ${{ steps.BuildForAndroid.outputs }}
           # Optional carbon copy recipients:
           cc: moataz@wuilt.com
           # # Optional blind carbon copy recipients:
