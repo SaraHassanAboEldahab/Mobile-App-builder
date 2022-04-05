@@ -76,7 +76,7 @@ jobs:
           # Optional (recommended) mail server password:
           password: ${{secrets.MAIL_PASSWORD}}
           # Required mail subject:
-          subject: Github Actions job result
+          subject: Building android app job result
           # Required recipients' addresses:
           to: moataz@wuilt.com
           # Required sender full name (address can be skipped):
@@ -118,7 +118,7 @@ jobs:
           # Optional (recommended) mail server password:
           password: ${{secrets.MAIL_PASSWORD}}
           # Required mail subject:
-          subject: Github Actions job result
+          subject: Building iso app job result
           # Required recipients' addresses:
           to: moataz@wuilt.com
           # Required sender full name (address can be skipped):
