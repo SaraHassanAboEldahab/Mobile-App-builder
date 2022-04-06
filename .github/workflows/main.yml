@@ -31,7 +31,8 @@ jobs:
         # run: echo "yarn install"
       - name: Build Android APK Bundle
         #  TODO: uncomment this line
-        run: expo build:android > build-android.log
+        # run: expo build:android > build-android.log
+        run: echo 123 > build-android.log
 
   send-android-via-email:
     needs: Build-for-android
