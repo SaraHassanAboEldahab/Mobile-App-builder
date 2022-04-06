@@ -11,30 +11,24 @@ jobs:
   Build-for-android:
     runs-on: macos-latest
     steps:
-      # - uses: actions/checkout@v2
-      # - uses: actions/setup-node@v1
-      #   with:
-      #     node-version: 14.x
-      # - uses: actions/setup-java@v1.4.3
-      #   with:
-      #     java-version: "9.0.4" # The JDK version to make available on the path.
-      #     java-package: jdk # (jre, jdk, or jdk+fx) - defaults to jdk
-      #     architecture: x64 # (x64 or x86) - defaults to x64
-      # - uses: expo/expo-github-action@v7
-      #   with:
-      #     expo-version: 5.x
-      #     eas-version: latest
-      #     token: ${{ secrets.EXPO_TOKEN }}
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
+      - uses: actions/setup-java@v1.4.3
+        with:
+          java-version: "9.0.4" # The JDK version to make available on the path.
+          java-package: jdk # (jre, jdk, or jdk+fx) - defaults to jdk
+          architecture: x64 # (x64 or x86) - defaults to x64
+      - uses: expo/expo-github-action@v7
+        with:
+          expo-version: 5.x
+          eas-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
       - name: Install deps
-        #  TODO: uncomment this line
-        run: yarn install
-        # run: echo "yarn install"
+        run: echo "yarn install"
       - name: Build Android APK Bundle
-        #  TODO: uncomment this line
-        # run: expo build:android > build-android.log
-        run: echo "123" > build-android.log
-        # run: echo "::set-output name=test::hello name=log::$(cat build-android.log) name=ls::$(ls)"
-        # id: android
+        run: expo build:android > build-android.log
 
   send-android-via-email:
     needs: Build-for-android
@@ -61,7 +55,7 @@ jobs:
           # Optional plain body:
           body: Build job of ${{github.repository}} completed successfully! $(cat build-android.log)
           # Optional HTML body read from file:
-          html_body: $(cat build-android.log)
+          html_body: Build job of ${{github.repository}} completed successfully! $(cat build-android.log)
           # Optional carbon copy recipients:
           cc: moataz@wuilt.com
           # # Optional blind carbon copy recipients:
