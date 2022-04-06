@@ -9,6 +9,7 @@ on:
   workflow_dispatch:
 jobs:
   Build-for-android:
+    if: ${{ false }} # disable android for now
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
@@ -93,7 +94,7 @@ jobs:
           xcode-version: "12.5" # Exact version of a Xcode version to use
           apple-id: ${{ secrets.EXPO_APPLE_ID }} # Apple ID to download from Apple Developer when Xcode not available in local
           apple-id-password: ${{ secrets.EXPO_APPLE_PASSWORD }}
-      - name: xcversion list
+      - name: List xcversion
         run: xcversion list
       - uses: expo/expo-github-action@v7
         id: ios
