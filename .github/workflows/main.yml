@@ -29,6 +29,7 @@ jobs:
       - name: Install deps
         #  TODO: uncomment this line
         # run: yarn install
+        run: echo "yarn install"
       - name: Build Android APK Bundle
         #  TODO: uncomment this line
         # run: expo build:android
