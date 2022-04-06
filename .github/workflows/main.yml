@@ -21,7 +21,6 @@ jobs:
       #     java-package: jdk # (jre, jdk, or jdk+fx) - defaults to jdk
       #     architecture: x64 # (x64 or x86) - defaults to x64
       # - uses: expo/expo-github-action@v7
-      #   id: android
       #   with:
       #     expo-version: 5.x
       #     eas-version: latest
@@ -33,6 +32,7 @@ jobs:
       - name: Build Android APK Bundle
         #  TODO: uncomment this line
         # run: expo build:android > build-android.log
+        id: android
         run: echo "::set-output name=test::hello name=log::$(ls)"
 
   send-android-via-email:
