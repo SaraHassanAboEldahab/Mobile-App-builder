@@ -89,6 +89,8 @@ jobs:
           java-package: jdk # (jre, jdk, or jdk+fx) - defaults to jdk
           architecture: x64 # (x64 or x86) - defaults to x64
       - uses: sinoru/actions-setup-xcode@v1.1.2
+      - name: xcversion list
+        run: xcversion list
         with:
           xcode-version: "12.5" # Exact version of a Xcode version to use
           apple-id: ${{ secrets.EXPO_APPLE_ID }} # Apple ID to download from Apple Developer when Xcode not available in local
