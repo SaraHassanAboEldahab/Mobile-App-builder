@@ -1,5 +1,6 @@
 import { WebView } from "react-native-webview";
-import * as core from "@actions/core";
+// import * as core from "@actions/core";
+const core = require("@actions/core");
 
 export default function App() {
   const uri = core.getInput("storeLink", { required: true });
