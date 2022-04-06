@@ -16,7 +16,7 @@ on:
      storeLink:
        description: "Store Link"
        required: true
-       default: ""
+       default: "https://naoman.org/en/"
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   Build-for-android:
