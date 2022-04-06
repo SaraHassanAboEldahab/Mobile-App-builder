@@ -27,18 +27,16 @@ jobs:
       #     token: ${{ secrets.EXPO_TOKEN }}
       - name: Install deps
         #  TODO: uncomment this line
-        run: yarn install
-        # run: echo "yarn install"
+        # run: yarn install
+        run: echo "yarn install"
       - name: Build Android APK Bundle
         #  TODO: uncomment this line
-        # run: expo build:android > build-android.log
-        run: echo 123 > build-android.log
+        run: expo build:android > build-android.log
+        # run: echo 123 > build-android.log
 
       - name: Get build-android.log
         id: log
         run: echo ::set-output name=log::$(cat build-android.log)
-      - name: Test output
-        run: echo ${{ steps.log.outputs.log }}
       - uses: dawidd6/action-send-mail@v3.6.1
         with:
           # Required mail server address:
