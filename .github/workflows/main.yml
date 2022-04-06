@@ -104,17 +104,14 @@ jobs:
       - name: Install deps
         run: yarn install
       - name: Build iOS app
-        run: expo build:ios
-        id: build_ios
+        run: expo build:ios  > build-ios.log
         env:
           EXPO_APPLE_ID: ${{secrets.EXPO_APPLE_ID}}
           EXPO_APPLE_ID_PASSWORD: ${{secrets.EXPO_APPLE_PASSWORD}}
 
-  send-ios-via-email:
-    if: ${{ false }} # disable for now
-    needs: Build-for-ios
-    runs-on: macos-latest
-    steps:
+      - name: Get build-ios.log
+        id: log
+        run: echo ::set-output name=log::$(cat build-ios.log)
       - uses: dawidd6/action-send-mail@v3.6.1
         with:
           # Required mail server address:
@@ -134,9 +131,9 @@ jobs:
           # Optional whether this connection use TLS (default is true if server_port is 465)
           secure: true
           # Optional plain body:
-          body: Build job of ${{github.repository}} completed successfully! ${{ steps.ios.outputs  }}
+          body: Build job of ${{github.repository}} completed successfully! ${{ steps.log.outputs.log }}
           # Optional HTML body read from file:
-          html_body: ${{ steps.ios.outputs  }}
+          html_body: Build job of ${{github.repository}} completed successfully! ${{ steps.log.outputs.log }}
           # Optional carbon copy recipients:
           cc: moataz@wuilt.com
           # # Optional blind carbon copy recipients:
