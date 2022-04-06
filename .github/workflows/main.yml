@@ -34,10 +34,6 @@ jobs:
         # run: expo build:android > build-android.log
         run: echo 123 > build-android.log
 
-  send-android-via-email:
-    needs: Build-for-android
-    runs-on: macos-latest
-    steps:
       - name: Get build-android.log
         id: log
         run: echo ::set-output name=log::$(cat build-android.log)
