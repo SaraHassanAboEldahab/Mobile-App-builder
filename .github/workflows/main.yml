@@ -11,21 +11,21 @@ jobs:
   Build-for-android:
     runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-        with:
-          node-version: 14.x
-      - uses: actions/setup-java@v1.4.3
-        with:
-          java-version: "9.0.4" # The JDK version to make available on the path.
-          java-package: jdk # (jre, jdk, or jdk+fx) - defaults to jdk
-          architecture: x64 # (x64 or x86) - defaults to x64
-      - uses: expo/expo-github-action@v7
-        id: android
-        with:
-          expo-version: 5.x
-          eas-version: latest
-          token: ${{ secrets.EXPO_TOKEN }}
+      # - uses: actions/checkout@v2
+      # - uses: actions/setup-node@v1
+      #   with:
+      #     node-version: 14.x
+      # - uses: actions/setup-java@v1.4.3
+      #   with:
+      #     java-version: "9.0.4" # The JDK version to make available on the path.
+      #     java-package: jdk # (jre, jdk, or jdk+fx) - defaults to jdk
+      #     architecture: x64 # (x64 or x86) - defaults to x64
+      # - uses: expo/expo-github-action@v7
+      #   id: android
+      #   with:
+      #     expo-version: 5.x
+      #     eas-version: latest
+      #     token: ${{ secrets.EXPO_TOKEN }}
       - name: Install deps
         #  TODO: uncomment this line
         # run: yarn install
