@@ -95,8 +95,6 @@ jobs:
           xcode-version: latest-stable
           apple-id: ${{ secrets.EXPO_APPLE_ID }} # Apple ID to download from Apple Developer when Xcode not available in local
           apple-id-password: ${{ secrets.EXPO_APPLE_PASSWORD }}
-      - name: List xcversion
-        run: xcversion list
       - uses: expo/expo-github-action@v7
         id: ios
         with:
@@ -109,8 +107,8 @@ jobs:
         run: expo build:ios  > build-ios.log
         env:
           EXPO_APPLE_ID: ${{secrets.EXPO_APPLE_ID}}
-          EXPO_APPLE_ID_PASSWORD: ${{secrets.EXPO_APPLE_PASSWORD}}
-          EXPO_APPLE_PASSWORD: ${{ secrets.EXPO_APP_SPECIFIC_PASSWORD }}
+          # EXPO_APPLE_ID_PASSWORD: ${{secrets.EXPO_APPLE_PASSWORD}}
+          EXPO_APPLE_PASSWORD: ${{ secrets.EXPO_APPLE_PASSWORD }}
 
       - name: Get build-ios.log
         id: log
