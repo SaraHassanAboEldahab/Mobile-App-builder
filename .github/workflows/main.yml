@@ -35,6 +35,49 @@ jobs:
         # run: expo build:android
         run: echo "android result .apk"
 
+  send-android-via-email:
+    needs: [Build-for-android]
+    runs-on: macos-latest
+    steps:
+      - uses: dawidd6/action-send-mail@v3.6.1
+        with:
+          # Required mail server address:
+          server_address: smtp.gmail.com
+          # Required mail server port:
+          server_port: 465
+          # Optional (recommended): mail server username:
+          username: ${{secrets.MAIL_USERNAME}}
+          # Optional (recommended) mail server password:
+          password: ${{secrets.MAIL_PASSWORD}}
+          # Required mail subject:
+          subject: Building android app job result
+          # Required recipients' addresses:
+          to: moataz@wuilt.com
+          # Required sender full name (address can be skipped):
+          from: Moataz Mohammady # <moataz@wuilt.com>
+          # Optional whether this connection use TLS (default is true if server_port is 465)
+          secure: true
+          # Optional plain body:
+          body: Build job of ${{github.repository}} completed successfully! ${{ steps.android.outputs  }}
+          # Optional HTML body read from file:
+          html_body: ${{ steps.android.outputs  }}
+          # Optional carbon copy recipients:
+          cc: moataz@wuilt.com
+          # # Optional blind carbon copy recipients:
+          # bcc: r2d2@example.com,hansolo@example.com
+          # # Optional recipient of the email response:
+          # reply_to: luke@example.com
+          # # Optional Message ID this message is replying to:
+          # in_reply_to: <random-luke@example.com>
+          # # Optional unsigned/invalid certificates allowance:
+          # ignore_cert: true
+          # # Optional converting Markdown to HTML (set content_type to text/html too):
+          # convert_markdown: true
+          # # Optional attachments:
+          # attachments: attachments.zip,git.diff,./dist/static/*.js
+          # # Optional priority: 'high', 'normal' (default) or 'low'
+          priority: low
+
   build-for-IOS:
     if: ${{ false }} # disable for now
     runs-on: macos-latest
@@ -95,49 +138,6 @@ jobs:
           body: Build job of ${{github.repository}} completed successfully! ${{ steps.ios.outputs  }}
           # Optional HTML body read from file:
           html_body: ${{ steps.ios.outputs  }}
-          # Optional carbon copy recipients:
-          cc: moataz@wuilt.com
-          # # Optional blind carbon copy recipients:
-          # bcc: r2d2@example.com,hansolo@example.com
-          # # Optional recipient of the email response:
-          # reply_to: luke@example.com
-          # # Optional Message ID this message is replying to:
-          # in_reply_to: <random-luke@example.com>
-          # # Optional unsigned/invalid certificates allowance:
-          # ignore_cert: true
-          # # Optional converting Markdown to HTML (set content_type to text/html too):
-          # convert_markdown: true
-          # # Optional attachments:
-          # attachments: attachments.zip,git.diff,./dist/static/*.js
-          # # Optional priority: 'high', 'normal' (default) or 'low'
-          priority: low
-
-  send-android-via-email:
-    needs: [Build-for-android]
-    runs-on: macos-latest
-    steps:
-      - uses: dawidd6/action-send-mail@v3.6.1
-        with:
-          # Required mail server address:
-          server_address: smtp.gmail.com
-          # Required mail server port:
-          server_port: 465
-          # Optional (recommended): mail server username:
-          username: ${{secrets.MAIL_USERNAME}}
-          # Optional (recommended) mail server password:
-          password: ${{secrets.MAIL_PASSWORD}}
-          # Required mail subject:
-          subject: Building android app job result
-          # Required recipients' addresses:
-          to: moataz@wuilt.com
-          # Required sender full name (address can be skipped):
-          from: Moataz Mohammady # <moataz@wuilt.com>
-          # Optional whether this connection use TLS (default is true if server_port is 465)
-          secure: true
-          # Optional plain body:
-          body: Build job of ${{github.repository}} completed successfully! ${{ steps.android.outputs.value  }}
-          # Optional HTML body read from file:
-          html_body: ${{ steps.android.outputs.value  }}
           # Optional carbon copy recipients:
           cc: moataz@wuilt.com
           # # Optional blind carbon copy recipients:
