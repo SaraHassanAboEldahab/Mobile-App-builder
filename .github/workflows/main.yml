@@ -37,6 +37,11 @@ jobs:
     needs: Build-for-android
     runs-on: macos-latest
     steps:
+      - name: Get build-android.log
+        id: log
+        run: echo ::set-output name=log::$(cat build-android.log)
+      - name: Test output
+        run: echo ${{ steps.log.outputs.log }}
       - uses: dawidd6/action-send-mail@v3.6.1
         with:
           # Required mail server address:
@@ -56,9 +61,9 @@ jobs:
           # Optional whether this connection use TLS (default is true if server_port is 465)
           secure: true
           # Optional plain body:
-          body: Build job of ${{github.repository}} completed successfully! ${{ cat build-android.log }}
+          body: Build job of ${{github.repository}} completed successfully! ${{ steps.log.outputs.log }}
           # Optional HTML body read from file:
-          html_body: ${{ cat build-android.log }}
+          html_body: ${{ steps.log.outputs.log }}
           # Optional carbon copy recipients:
           cc: moataz@wuilt.com
           # # Optional blind carbon copy recipients:
