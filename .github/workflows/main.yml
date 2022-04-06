@@ -17,6 +17,9 @@ on:
        description: "Store Link"
        required: true
        default: ""
+   runs:
+    using: 'node12'
+    main: 'dist/index.js'
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   Build-for-android:
