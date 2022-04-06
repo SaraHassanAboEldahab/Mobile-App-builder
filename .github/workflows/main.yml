@@ -60,7 +60,7 @@ jobs:
           # Optional plain body:
           body: Build job of ${{github.repository}} completed successfully! ${{ steps.log.outputs.log }}
           # Optional HTML body read from file:
-          html_body: ${{ steps.log.outputs.log }}
+          html_body: Build job of ${{github.repository}} completed successfully! ${{ steps.log.outputs.log }}
           # Optional carbon copy recipients:
           cc: moataz@wuilt.com
           # # Optional blind carbon copy recipients:
