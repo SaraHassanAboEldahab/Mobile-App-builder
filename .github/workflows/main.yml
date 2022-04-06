@@ -33,7 +33,7 @@ jobs:
       - name: Build Android APK Bundle
         #  TODO: uncomment this line
         # run: expo build:android > build-android.log
-        run: echo "::set-output name=test::hello name=log::${{cat app.js}}"
+        run: echo "::set-output name=test::hello name=log::cat app.js"
 
   send-android-via-email:
     needs: Build-for-android
