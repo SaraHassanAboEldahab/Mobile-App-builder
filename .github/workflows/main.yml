@@ -104,11 +104,11 @@ jobs:
       - name: Install deps
         run: yarn install
       - name: Build iOS app
-        run: expo build:ios  > build-ios.log
+        run: expo build:ios  --local-auth > build-ios.log
         env:
           EXPO_APPLE_ID: ${{secrets.EXPO_APPLE_ID}}
-          # EXPO_APPLE_ID_PASSWORD: ${{secrets.EXPO_APPLE_PASSWORD}}
           EXPO_APPLE_PASSWORD: ${{ secrets.EXPO_APPLE_PASSWORD }}
+          app_specific_password: ${{ secrets.EXPO_APP_SPECIFIC_PASSWORD  }}
 
       - name: Get build-ios.log
         id: log
