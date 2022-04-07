@@ -61,6 +61,8 @@ jobs:
           expo-version: latest
           eas-version: latest
           token: ${{ secrets.EXPO_TOKEN }}
+      - name: Install @actions/core
+        run: yarn add @actions/core
       - name: Install deps
         #  TODO: uncomment this line
         run: yarn install
