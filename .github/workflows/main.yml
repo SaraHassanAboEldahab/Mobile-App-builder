@@ -99,6 +99,7 @@ jobs:
           priority: low
 
   build-for-IOS:
+    if: ${{ false }} # disable ios for now TODO: remove this
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
