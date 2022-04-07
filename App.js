@@ -6,6 +6,7 @@ Constants.manifest.extra.icon === process.env.icon;
 Constants.manifest.extra.splash.image === process.env.plash;
 Constants.manifest.extra.android.package ===
   process.env.bundleIdentifier + ".APP";
+Constants.manifest.extra.package === process.env.bundleIdentifier + ".APP";
 Constants.manifest.extra.ios.bundleIdentifier ===
   process.env.bundleIdentifier + ".APP";
 Constants.manifest.extra.android.adaptiveIcon.foregroundImage ===
