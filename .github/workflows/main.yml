@@ -15,7 +15,17 @@ on:
         type: string
       icon:
         description: "Application icon"
-        default: "https://wuilt-assets-v2-dev.s3.amazonaws.com/ckuztlay2006d3e6x9z1ft4mk_AHW%2520Logo%25201.png"
+        default: "https://raw.githubusercontent.com/MoatazAbdAlmageed/First-Mobile-App/main/assets/icon.png"
+        required: true
+        type: string
+      splash:
+        description: "Application splash"
+        default: "https://raw.githubusercontent.com/MoatazAbdAlmageed/First-Mobile-App/main/assets/splash.png"
+        required: true
+        type: string
+      adaptive-icon:
+        description: "Application adaptive-icon"
+        default: "https://raw.githubusercontent.com/MoatazAbdAlmageed/First-Mobile-App/main/assets/adaptive-icon.png"
         required: true
         type: string
 jobs:
@@ -25,9 +35,13 @@ jobs:
       - run: |
           echo "url: $url"
           echo "icon: $icon"
+          echo "splash: $splash"
+          echo "adaptive-icon: $adaptive-icon"
         env:
           url: ${{ github.event.inputs.url }}
           icon: ${{ github.event.inputs.icon }}
+          splash: ${{ github.event.inputs.splash }}
+          adaptive-icon: ${{ github.event.inputs.adaptive-icon }}
 
   Build-for-android:
     if: ${{ false }} # disable android for now TODO: remove this
