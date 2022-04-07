@@ -13,6 +13,11 @@ on:
         required: true
         default: "Arab Hardware"
         type: string
+      bundleIdentifier:
+        description: "Application bundleIdentifier"
+        required: true
+        default: "ArabHardware"
+        type: string
       url:
         description: "Store URL"
         required: true
