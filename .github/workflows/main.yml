@@ -101,13 +101,6 @@ jobs:
           expo-version: latest
           eas-version: latest
           token: ${{ secrets.EXPO_TOKEN }}
-      - name: Update my-file.json description
-        uses: jossef/action-set-json-field@v1
-        with:
-          file: app-data.json
-          field: url
-          value: ${{ github.event.inputs.url }}
-        # TODO find a way to update multiple field inside app.json like replace  ./assets/icon.png with mobile settings from input
       - name: Install deps
         run: yarn install
       - name: Build Android APK Bundle
