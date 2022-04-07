@@ -44,7 +44,7 @@ jobs:
           adaptiveIcon: ${{ github.event.inputs.adaptiveIcon }}
 
   Build-for-android:
-    if: ${{ false }} # disable android for now TODO: remove this
+    # if: ${{ false }} # disable android for now TODO: remove this
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
