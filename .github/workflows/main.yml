@@ -13,6 +13,11 @@ on:
         required: true
         default: "Arab Hardware"
         type: string
+      slug:
+        description: "Application slug"
+        required: true
+        default: "arab-hardware-app"
+        type: string
       bundleIdentifier:
         description: "Application bundleIdentifier"
         required: true
@@ -61,9 +66,11 @@ jobs:
           echo "adaptiveIcon: $adaptiveIcon"
           echo "email: $email"
           echo "from: $from"
+          echo "slug: $slug"
 
         env:
           appName: ${{ github.event.inputs.appName }}
+          slug: ${{ github.event.inputs.slug }}
           bundleIdentifier: ${{ github.event.inputs.bundleIdentifier }}
           url: ${{ github.event.inputs.url }}
           icon: ${{ github.event.inputs.icon }}
@@ -76,6 +83,7 @@ jobs:
         uses: SpicyPizza/create-envfile@v1
         with:
           envkey_appName: ${{ github.event.inputs.appName }}
+          envkey_slug: ${{ github.event.inputs.slug }}
           envkey_bundleIdentifier: ${{ github.event.inputs.bundleIdentifier }}
           envkey_url: ${{ github.event.inputs.url }}
           envkey_icon: ${{ github.event.inputs.icon }}

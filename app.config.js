@@ -1,6 +1,6 @@
 export default ({ config }) => {
   config.name = process.env.appName;
-  config.slug = `${process.env.bundleIdentifier}.App`;
+  config.slug = process.env.slug;
   config.icon = process.env.icon;
   config.splash.image = process.env.image;
   config.android.adaptiveIcon.foregroundImage = process.env.adaptiveIcon;
