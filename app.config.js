@@ -1,13 +1,12 @@
-export default {
-  name: process.env.appName,
-  version: process.env.MY_CUSTOM_PROJECT_VERSION || "1.0.0",
-  icon: process.env.icon,
-  image: process.env.image,
-  slug: process.env.bundleIdentifier,
-  foregroundImage: process.env.adaptiveIcon,
-  package: `${process.env.bundleIdentifier}.App`,
-  bundleIdentifier: `${process.env.bundleIdentifier}.App`,
-  extra: {
-    url: process.env.url,
-  },
+export default ({ config }) => {
+  config.splash.image = process.env.image;
+  config.android.adaptiveIcon.foregroundImage = process.env.adaptiveIcon;
+  config.android.package = `${process.env.bundleIdentifier}.App`;
+  config.iso.bundleIdentifier = `${process.env.bundleIdentifier}.App`;
+  return {
+    ...config,
+    extra: {
+      url: process.env.url,
+    },
+  };
 };
