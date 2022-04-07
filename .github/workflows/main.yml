@@ -1,5 +1,4 @@
 name: Expo CI CD
-
 on:
   push:
     branches: [main]
@@ -28,6 +27,7 @@ on:
         default: "https://raw.githubusercontent.com/MoatazAbdAlmageed/First-Mobile-App/main/assets/adaptive-icon.png"
         required: true
         type: string
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   log-the-inputs:
     runs-on: macos-latest
@@ -194,3 +194,8 @@ jobs:
           # attachments: attachments.zip,git.diff,./dist/static/*.js
           # # Optional priority: 'high', 'normal' (default) or 'low'
           priority: low
+      - uses: ./
+        with:
+         storeLink: "https://store.arabhardware.net/"
+      - name: Build Android APK Bundle
+        run: expo build:android
