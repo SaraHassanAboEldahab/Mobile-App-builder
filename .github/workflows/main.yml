@@ -11,17 +11,17 @@ on:
       appName:
         description: "Application name"
         required: true
-        default: "Arab Hardware"
+        default: "Sarah"
         type: string
       bundleIdentifier:
         description: "Application bundleIdentifier"
         required: true
-        default: "ArabHardware"
+        default: "Sarah"
         type: string
       url:
         description: "Store URL"
         required: true
-        default: "https://store.arabhardware.net/"
+        default: "https://sarah-8.wuiltstore.com"
         type: string
       icon:
         description: "Application icon"
