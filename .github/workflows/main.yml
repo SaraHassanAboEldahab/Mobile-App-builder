@@ -11,11 +11,6 @@ on:
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
-   inputs:
-     storeLink:
-       description: "Store Link"
-       default: " "
-       required: false
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   Build-for-android:
@@ -35,6 +30,9 @@ jobs:
           expo-version: 5.x
           eas-version: latest
           token: ${{ secrets.EXPO_TOKEN }}
+      - uses: ./action.yml
+        with:
+         storeLink: "https://store.arabhardware.net/"
       - name: Install deps
         run: yarn install
       - name: Build Android APK Bundle
