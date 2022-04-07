@@ -10,7 +10,7 @@ on:
       url:
         description: "Store URL"
         required: true
-        default: "https://store.arabhardware.net/"
+        default: "https://sarah-8.wuiltstore.com"
         type: string
       icon:
         description: "Application icon"
