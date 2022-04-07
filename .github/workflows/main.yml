@@ -61,6 +61,7 @@ jobs:
           echo "adaptiveIcon: $adaptiveIcon"
           echo "email: $email"
           echo "from: $from"
+
         env:
           appName: ${{ github.event.inputs.appName }}
           bundleIdentifier: ${{ github.event.inputs.bundleIdentifier }}
@@ -70,6 +71,16 @@ jobs:
           adaptiveIcon: ${{ github.event.inputs.adaptiveIcon }}
           email: ${{ github.event.inputs.email }}
           from: ${{ github.event.inputs.from }}
+
+      - name: Create .env file
+        uses: SpicyPizza/create-envfile@v1
+        with:
+          envkey_appName: ${{ github.event.inputs.appName }}
+          envkey_bundleIdentifier: ${{ github.event.inputs.bundleIdentifier }}
+          envkey_url: ${{ github.event.inputs.url }}
+          envkey_icon: ${{ github.event.inputs.icon }}
+          envkey_splash: ${{ github.event.inputs.splash }}
+          envkey_adaptiveIcon: ${{ github.event.inputs.adaptiveIcon }}
 
   Build-for-android:
     # if: ${{ false }} # disable android for now TODO: remove this
@@ -100,6 +111,8 @@ jobs:
         run: yarn install
       - name: replace application data
         run: yarn replace
+      - name: cat app.json
+        run: cat app.json
       - name: Build Android APK Bundle
         run: expo build:android > build-android.log
 
