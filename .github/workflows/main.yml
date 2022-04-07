@@ -61,8 +61,12 @@ jobs:
           expo-version: latest
           eas-version: latest
           token: ${{ secrets.EXPO_TOKEN }}
-      - name: Install @actions/core
-        run: yarn add @actions/core
+      - name: Update my-file.json description
+        uses: jossef/action-set-json-field@v1
+        with:
+          file: app.json
+          field: url
+          value: ${{ github.event.inputs.url }}
       - name: Install deps
         #  TODO: uncomment this line
         run: yarn install

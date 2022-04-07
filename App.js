@@ -1,7 +1,7 @@
-import * as core from "@actions/core";
 import { WebView } from "react-native-webview";
+import appData from "./app.json";
 
 export default function App() {
-  const uri = core.getInput("url", { required: true });
+  const uri = appData?.expo?.url;
   return <WebView source={{ uri }} />;
 }
