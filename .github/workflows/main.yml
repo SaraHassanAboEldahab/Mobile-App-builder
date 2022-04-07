@@ -28,6 +28,16 @@ on:
         default: "https://raw.githubusercontent.com/MoatazAbdAlmageed/First-Mobile-App/main/assets/adaptive-icon.png"
         required: true
         type: string
+      email:
+        description: "Application owner email"
+        default: "moataz@wuilt.com"
+        required: true
+        type: string
+      from:
+        description: "Application owner name"
+        default: "Moataz Mohammady"
+        required: true
+        type: string
 jobs:
   log-the-inputs:
     runs-on: macos-latest
@@ -37,11 +47,15 @@ jobs:
           echo "icon: $icon"
           echo "splash: $splash"
           echo "adaptiveIcon: $adaptiveIcon"
+          echo "email: $email"
+          echo "from: $from"
         env:
           url: ${{ github.event.inputs.url }}
           icon: ${{ github.event.inputs.icon }}
           splash: ${{ github.event.inputs.splash }}
           adaptiveIcon: ${{ github.event.inputs.adaptiveIcon }}
+          email: ${{ github.event.inputs.email }}
+          from: ${{ github.event.inputs.from }}
 
   Build-for-android:
     # if: ${{ false }} # disable android for now TODO: remove this
@@ -93,9 +107,9 @@ jobs:
           # Required mail subject:
           subject: Building android app job result
           # Required recipients' addresses:
-          to: moataz@wuilt.com
+          to: ${{ github.event.inputs.email }}
           # Required sender full name (address can be skipped):
-          from: Moataz Mohammady # <moataz@wuilt.com>
+          from: ${{ github.event.inputs.from }}
           # Optional whether this connection use TLS (default is true if server_port is 465)
           secure: true
           # Optional plain body:
@@ -103,7 +117,7 @@ jobs:
           # Optional HTML body read from file:
           html_body: Build job of ${{github.repository}} completed successfully! ${{ steps.log.outputs.log }}
           # Optional carbon copy recipients:
-          cc: moataz@wuilt.com
+          # cc: moataz@wuilt.com
           # # Optional blind carbon copy recipients:
           # bcc: r2d2@example.com,hansolo@example.com
           # # Optional recipient of the email response:
@@ -169,9 +183,9 @@ jobs:
           # Required mail subject:
           subject: Building iso app job result
           # Required recipients' addresses:
-          to: moataz@wuilt.com
+          to: ${{ github.event.inputs.email }}
           # Required sender full name (address can be skipped):
-          from: Moataz Mohammady # <moataz@wuilt.com>
+          from: ${{ github.event.inputs.from }}
           # Optional whether this connection use TLS (default is true if server_port is 465)
           secure: true
           # Optional plain body:
@@ -179,7 +193,7 @@ jobs:
           # Optional HTML body read from file:
           html_body: Build job of ${{github.repository}} completed successfully! ${{ steps.log.outputs.log }}
           # Optional carbon copy recipients:
-          cc: moataz@wuilt.com
+          # cc: moataz@wuilt.com
           # # Optional blind carbon copy recipients:
           # bcc: r2d2@example.com,hansolo@example.com
           # # Optional recipient of the email response:
