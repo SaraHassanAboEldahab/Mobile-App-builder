@@ -1,4 +1,4 @@
-import core from "@actions/core";
+import * as core from "@actions/core";
 import { WebView } from "react-native-webview";
 
 export default function App() {
