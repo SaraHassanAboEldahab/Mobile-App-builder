@@ -71,6 +71,14 @@ jobs:
           if [[ $search != "" && $replace != "" ]]; then
           sed -i "s/$search/$replace/" $filename
 
+          # Replace slug
+          # TODO we cab pass slug
+          read -p "arab-hardware-app" search
+          # Take the replace string
+          read -p ${{ github.event.inputs.bundleIdentifier }} replace
+          if [[ $search != "" && $replace != "" ]]; then
+          sed -i "s/$search/$replace/" $filename
+
           # Replace bundleIdentifier
           read -p "Arabhardware" search
           # Take the replace string
