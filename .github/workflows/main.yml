@@ -61,54 +61,6 @@ jobs:
           echo "adaptiveIcon: $adaptiveIcon"
           echo "email: $email"
           echo "from: $from"
-
-          filename="app.json"
-
-          # Replace appName
-          read -p "Arab Hardware" search
-          # Take the replace string
-          read -p ${{ github.event.inputs.appName }} replace
-          if [[ $search != "" && $replace != "" ]]; then
-          sed -i "s/$search/$replace/" $filename
-
-          # Replace slug
-          # TODO we cab pass slug
-          read -p "arab-hardware-app" search
-          # Take the replace string
-          read -p ${{ github.event.inputs.bundleIdentifier }} replace
-          if [[ $search != "" && $replace != "" ]]; then
-          sed -i "s/$search/$replace/" $filename
-
-          # Replace bundleIdentifier
-          read -p "Arabhardware" search
-          # Take the replace string
-          read -p ${{ github.event.inputs.bundleIdentifier }} replace
-          if [[ $search != "" && $replace != "" ]]; then
-          sed -i "s/$search/$replace/" $filename
-
-
-          # Replace splash
-          read -p "./assets/splash.png" search
-          # Take the replace string
-          read -p ${{ github.event.inputs.splash }} replace
-          if [[ $search != "" && $replace != "" ]]; then
-          sed -i "s/$search/$replace/" $filename
-
-
-          # Replace icon
-          read -p "./assets/icon.png" search
-          # Take the replace string
-          read -p ${{ github.event.inputs.icon }} replace
-          if [[ $search != "" && $replace != "" ]]; then
-          sed -i "s/$search/$replace/" $filename
-
-          # Replace adaptiveIcon
-          read -p "./assets/adaptiveIcon.png" search
-          # Take the replace string
-          read -p ${{ github.event.inputs.adaptiveIcon }} replace
-          if [[ $search != "" && $replace != "" ]]; then
-          sed -i "s/$search/$replace/" $filename
-
         env:
           appName: ${{ github.event.inputs.appName }}
           bundleIdentifier: ${{ github.event.inputs.bundleIdentifier }}
@@ -144,6 +96,8 @@ jobs:
           field: url
           value: ${{ github.event.inputs.url }}
         # TODO find a way to update multiple field inside app.json like replace  ./assets/icon.png with mobile settings from input
+      - name: replace application data
+        run: yarn replace
       - name: Install deps
         run: yarn install
       - name: Build Android APK Bundle
