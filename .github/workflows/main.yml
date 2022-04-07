@@ -64,9 +64,10 @@ jobs:
       - name: Update my-file.json description
         uses: jossef/action-set-json-field@v1
         with:
-          file: app.json
+          file: app-data.json
           field: url
           value: ${{ github.event.inputs.url }}
+        # TODO find a way to update multiple field inside app.json
       - name: Install deps
         #  TODO: uncomment this line
         run: yarn install
