@@ -110,10 +110,6 @@ jobs:
         # TODO find a way to update multiple field inside app.json like replace  ./assets/icon.png with mobile settings from input
       - name: Install deps
         run: yarn install
-      # - name: replace application data
-      #   run: yarn replace
-      # - name: cat app.json
-      #   run: cat app.json
       - name: Build Android APK Bundle
         run: expo build:android > build-android.log
 
