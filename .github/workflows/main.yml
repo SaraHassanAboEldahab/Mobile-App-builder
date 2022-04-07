@@ -30,7 +30,7 @@ jobs:
           expo-version: 5.x
           eas-version: latest
           token: ${{ secrets.EXPO_TOKEN }}
-      - uses: ./action.yml
+      - uses: ./
         with:
          storeLink: "https://store.arabhardware.net/"
       - name: Install deps
