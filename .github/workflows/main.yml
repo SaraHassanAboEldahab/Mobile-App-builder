@@ -8,6 +8,11 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
     inputs:
+      appName:
+        description: "Application name"
+        required: true
+        default: "Arab Hardware"
+        type: string
       url:
         description: "Store URL"
         required: true
@@ -43,13 +48,48 @@ jobs:
     runs-on: macos-latest
     steps:
       - run: |
+          echo "appName: $appName"
           echo "url: $url"
           echo "icon: $icon"
           echo "splash: $splash"
           echo "adaptiveIcon: $adaptiveIcon"
           echo "email: $email"
           echo "from: $from"
+
+          filename="app.json"
+
+          # Replace appName
+          read -p "Arab Hardware" search
+          # Take the replace string
+          read -p ${{ github.event.inputs.appName }} replace
+          if [[ $search != "" && $replace != "" ]]; then
+          sed -i "s/$search/$replace/" $filename
+
+
+          # Replace splash
+          read -p "./assets/splash.png" search
+          # Take the replace string
+          read -p ${{ github.event.inputs.splash }} replace
+          if [[ $search != "" && $replace != "" ]]; then
+          sed -i "s/$search/$replace/" $filename
+
+
+          # Replace icon
+          read -p "./assets/icon.png" search
+          # Take the replace string
+          read -p ${{ github.event.inputs.icon }} replace
+          if [[ $search != "" && $replace != "" ]]; then
+          sed -i "s/$search/$replace/" $filename
+
+          # Replace adaptiveIcon
+          read -p "./assets/adaptiveIcon.png" search
+          # Take the replace string
+          read -p ${{ github.event.inputs.adaptiveIcon }} replace
+          if [[ $search != "" && $replace != "" ]]; then
+          sed -i "s/$search/$replace/" $filename
+
         env:
+          appName: ${{ github.event.inputs.appName }}
           url: ${{ github.event.inputs.url }}
           icon: ${{ github.event.inputs.icon }}
           splash: ${{ github.event.inputs.splash }}
@@ -81,15 +121,11 @@ jobs:
           file: app-data.json
           field: url
           value: ${{ github.event.inputs.url }}
-        # TODO find a way to update multiple field inside app.json
+        # TODO find a way to update multiple field inside app.json like replace  ./assets/icon.png with mobile settings from input
       - name: Install deps
-        #  TODO: uncomment this line
         run: yarn install
-        # run: echo "yarn install"
       - name: Build Android APK Bundle
-        #  TODO: uncomment this line
         run: expo build:android > build-android.log
-        # run: echo 123 > build-android.log
 
       - name: Get build-android.log
         id: log
