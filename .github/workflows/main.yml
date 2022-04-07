@@ -50,7 +50,7 @@ on:
         type: string
 jobs:
   log-the-inputs:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     steps:
       - run: |
           echo "appName: $appName"
@@ -81,6 +81,7 @@ jobs:
           envkey_icon: ${{ github.event.inputs.icon }}
           envkey_splash: ${{ github.event.inputs.splash }}
           envkey_adaptiveIcon: ${{ github.event.inputs.adaptiveIcon }}
+          file_name: .env
 
   Build-for-android:
     # if: ${{ false }} # disable android for now TODO: remove this
