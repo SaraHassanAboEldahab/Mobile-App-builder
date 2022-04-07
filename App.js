@@ -1,7 +1,6 @@
+import Constants from "expo-constants";
 import { WebView } from "react-native-webview";
-import appData from "./app-data.json";
-
 export default function App() {
-  const uri = appData?.url;
+  const uri = Constants.manifest.extra.url;
   return <WebView source={{ uri }} />;
 }

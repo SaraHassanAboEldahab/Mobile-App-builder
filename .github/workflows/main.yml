@@ -50,7 +50,7 @@ on:
         type: string
 jobs:
   log-the-inputs:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     steps:
       - run: |
           echo "appName: $appName"
@@ -62,45 +62,6 @@ jobs:
           echo "email: $email"
           echo "from: $from"
 
-          filename="app.json"
-
-          # Replace appName
-          read -p "Arab Hardware" search
-          # Take the replace string
-          read -p ${{ github.event.inputs.appName }} replace
-          if [[ $search != "" && $replace != "" ]]; then
-          sed -i "s/$search/$replace/" $filename
-
-          # Replace bundleIdentifier
-          read -p "Arabhardware" search
-          # Take the replace string
-          read -p ${{ github.event.inputs.bundleIdentifier }} replace
-          if [[ $search != "" && $replace != "" ]]; then
-          sed -i "s/$search/$replace/" $filename
-
-
-          # Replace splash
-          read -p "./assets/splash.png" search
-          # Take the replace string
-          read -p ${{ github.event.inputs.splash }} replace
-          if [[ $search != "" && $replace != "" ]]; then
-          sed -i "s/$search/$replace/" $filename
-
-
-          # Replace icon
-          read -p "./assets/icon.png" search
-          # Take the replace string
-          read -p ${{ github.event.inputs.icon }} replace
-          if [[ $search != "" && $replace != "" ]]; then
-          sed -i "s/$search/$replace/" $filename
-
-          # Replace adaptiveIcon
-          read -p "./assets/adaptiveIcon.png" search
-          # Take the replace string
-          read -p ${{ github.event.inputs.adaptiveIcon }} replace
-          if [[ $search != "" && $replace != "" ]]; then
-          sed -i "s/$search/$replace/" $filename
-
         env:
           appName: ${{ github.event.inputs.appName }}
           bundleIdentifier: ${{ github.event.inputs.bundleIdentifier }}
@@ -111,8 +72,18 @@ jobs:
           email: ${{ github.event.inputs.email }}
           from: ${{ github.event.inputs.from }}
 
+      - name: Create .env file
+        uses: SpicyPizza/create-envfile@v1
+        with:
+          envkey_appName: ${{ github.event.inputs.appName }}
+          envkey_bundleIdentifier: ${{ github.event.inputs.bundleIdentifier }}
+          envkey_url: ${{ github.event.inputs.url }}
+          envkey_icon: ${{ github.event.inputs.icon }}
+          envkey_splash: ${{ github.event.inputs.splash }}
+          envkey_adaptiveIcon: ${{ github.event.inputs.adaptiveIcon }}
+          file_name: .env
+
   Build-for-android:
-    # if: ${{ false }} # disable android for now TODO: remove this
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
@@ -129,13 +100,6 @@ jobs:
           expo-version: latest
           eas-version: latest
           token: ${{ secrets.EXPO_TOKEN }}
-      - name: Update my-file.json description
-        uses: jossef/action-set-json-field@v1
-        with:
-          file: app-data.json
-          field: url
-          value: ${{ github.event.inputs.url }}
-        # TODO find a way to update multiple field inside app.json like replace  ./assets/icon.png with mobile settings from input
       - name: Install deps
         run: yarn install
       - name: Build Android APK Bundle
@@ -169,7 +133,7 @@ jobs:
           priority: low
 
   build-for-IOS:
-    if: ${{ false }} # disable ios for now TODO: remove this
+    if: ${{ false }} # disa ble ios for now TODO: remove this
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
