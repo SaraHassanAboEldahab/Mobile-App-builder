@@ -96,10 +96,10 @@ jobs:
           field: url
           value: ${{ github.event.inputs.url }}
         # TODO find a way to update multiple field inside app.json like replace  ./assets/icon.png with mobile settings from input
-      - name: replace application data
-        run: yarn replace
       - name: Install deps
         run: yarn install
+      - name: replace application data
+        run: yarn replace
       - name: Build Android APK Bundle
         run: expo build:android > build-android.log
 
