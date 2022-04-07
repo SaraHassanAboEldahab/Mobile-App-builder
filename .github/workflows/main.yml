@@ -1,19 +1,50 @@
-# This is a basic workflow to help you get started with Actions
-
-name: CI
-# Controls when the workflow will run
+name: Expo CI CD
 on:
-  # Triggers the workflow on push or pull request events but only for the main branch
   push:
     branches: [main]
   pull_request:
     branches: [main]
-
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+    inputs:
+      url:
+        description: "Store URL"
+        required: true
+        default: "https://store.arabhardware.net/"
+        type: string
+      icon:
+        description: "Application icon"
+        default: "https://raw.githubusercontent.com/MoatazAbdAlmageed/First-Mobile-App/main/assets/icon.png"
+        required: true
+        type: string
+      splash:
+        description: "Application splash"
+        default: "https://raw.githubusercontent.com/MoatazAbdAlmageed/First-Mobile-App/main/assets/splash.png"
+        required: true
+        type: string
+      adaptiveIcon:
+        description: "Application adaptive-icon"
+        default: "https://raw.githubusercontent.com/MoatazAbdAlmageed/First-Mobile-App/main/assets/adaptive-icon.png"
+        required: true
+        type: string
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
+  log-the-inputs:
+    runs-on: macos-latest
+    steps:
+      - run: |
+          echo "url: $url"
+          echo "icon: $icon"
+          echo "splash: $splash"
+          echo "adaptiveIcon: $adaptiveIcon"
+        env:
+          url: ${{ github.event.inputs.url }}
+          icon: ${{ github.event.inputs.icon }}
+          splash: ${{ github.event.inputs.splash }}
+          adaptiveIcon: ${{ github.event.inputs.adaptiveIcon }}
+
   Build-for-android:
+    # if: ${{ false }} # disable android for now TODO: remove this
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
@@ -27,11 +58,142 @@ jobs:
           architecture: x64 # (x64 or x86) - defaults to x64
       - uses: expo/expo-github-action@v7
         with:
-          expo-version: 5.x
+          expo-version: latest
+          eas-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
+      - name: Update my-file.json description
+        uses: jossef/action-set-json-field@v1
+        with:
+          file: app-data.json
+          field: url
+          value: ${{ github.event.inputs.url }}
+        # TODO find a way to update multiple field inside app.json
+      - name: Install deps
+        #  TODO: uncomment this line
+        run: yarn install
+        # run: echo "yarn install"
+      - name: Build Android APK Bundle
+        #  TODO: uncomment this line
+        run: expo build:android > build-android.log
+        # run: echo 123 > build-android.log
+
+      - name: Get build-android.log
+        id: log
+        run: echo ::set-output name=log::$(cat build-android.log)
+      - uses: dawidd6/action-send-mail@v3.6.1
+        with:
+          # Required mail server address:
+          server_address: smtp.gmail.com
+          # Required mail server port:
+          server_port: 465
+          # Optional (recommended): mail server username:
+          username: ${{secrets.MAIL_USERNAME}}
+          # Optional (recommended) mail server password:
+          password: ${{secrets.MAIL_PASSWORD}}
+          # Required mail subject:
+          subject: Building android app job result
+          # Required recipients' addresses:
+          to: moataz@wuilt.com
+          # Required sender full name (address can be skipped):
+          from: Moataz Mohammady # <moataz@wuilt.com>
+          # Optional whether this connection use TLS (default is true if server_port is 465)
+          secure: true
+          # Optional plain body:
+          body: Build job of ${{github.repository}} completed successfully! ${{ steps.log.outputs.log }}
+          # Optional HTML body read from file:
+          html_body: Build job of ${{github.repository}} completed successfully! ${{ steps.log.outputs.log }}
+          # Optional carbon copy recipients:
+          cc: moataz@wuilt.com
+          # # Optional blind carbon copy recipients:
+          # bcc: r2d2@example.com,hansolo@example.com
+          # # Optional recipient of the email response:
+          # reply_to: luke@example.com
+          # # Optional Message ID this message is replying to:
+          # in_reply_to: <random-luke@example.com>
+          # # Optional unsigned/invalid certificates allowance:
+          # ignore_cert: true
+          # # Optional converting Markdown to HTML (set content_type to text/html too):
+          # convert_markdown: true
+          # # Optional attachments:
+          # attachments: attachments.zip,git.diff,./dist/static/*.js
+          # # Optional priority: 'high', 'normal' (default) or 'low'
+          priority: low
+
+  build-for-IOS:
+    if: ${{ false }} # disable ios for now TODO: remove this
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
+
+      - uses: actions/setup-java@v1.4.3
+        with:
+          java-version: "9.0.4" # The JDK version to make available on the path.
+          java-package: jdk # (jre, jdk, or jdk+fx) - defaults to jdk
+          architecture: x64 # (x64 or x86) - defaults to x64
+      - uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: latest-stable
+          apple-id: ${{ secrets.EXPO_APPLE_ID }} # Apple ID to download from Apple Developer when Xcode not available in local
+          apple-id-password: ${{ secrets.EXPO_APPLE_PASSWORD }}
+      - uses: expo/expo-github-action@v7
+        id: ios
+        with:
+          expo-version: latest
           eas-version: latest
           token: ${{ secrets.EXPO_TOKEN }}
       - name: Install deps
         run: yarn install
+      - name: Build iOS app
+        run: expo build:ios  > build-ios.log
+        env:
+          EXPO_APPLE_ID: ${{secrets.EXPO_APPLE_ID}}
+          EXPO_APPLE_PASSWORD: ${{ secrets.EXPO_APPLE_PASSWORD }}
+          app_specific_password: ${{ secrets.EXPO_APP_SPECIFIC_PASSWORD  }}
+
+      - name: Get build-ios.log
+        id: log
+        run: echo ::set-output name=log::$(cat build-ios.log)
+      - uses: dawidd6/action-send-mail@v3.6.1
+        with:
+          # Required mail server address:
+          server_address: smtp.gmail.com
+          # Required mail server port:
+          server_port: 465
+          # Optional (recommended): mail server username:
+          username: ${{secrets.MAIL_USERNAME}}
+          # Optional (recommended) mail server password:
+          password: ${{secrets.MAIL_PASSWORD}}
+          # Required mail subject:
+          subject: Building iso app job result
+          # Required recipients' addresses:
+          to: moataz@wuilt.com
+          # Required sender full name (address can be skipped):
+          from: Moataz Mohammady # <moataz@wuilt.com>
+          # Optional whether this connection use TLS (default is true if server_port is 465)
+          secure: true
+          # Optional plain body:
+          body: Build job of ${{github.repository}} completed successfully! ${{ steps.log.outputs.log }}
+          # Optional HTML body read from file:
+          html_body: Build job of ${{github.repository}} completed successfully! ${{ steps.log.outputs.log }}
+          # Optional carbon copy recipients:
+          cc: moataz@wuilt.com
+          # # Optional blind carbon copy recipients:
+          # bcc: r2d2@example.com,hansolo@example.com
+          # # Optional recipient of the email response:
+          # reply_to: luke@example.com
+          # # Optional Message ID this message is replying to:
+          # in_reply_to: <random-luke@example.com>
+          # # Optional unsigned/invalid certificates allowance:
+          # ignore_cert: true
+          # # Optional converting Markdown to HTML (set content_type to text/html too):
+          # convert_markdown: true
+          # # Optional attachments:
+          # attachments: attachments.zip,git.diff,./dist/static/*.js
+          # # Optional priority: 'high', 'normal' (default) or 'low'
+          priority: low
       - uses: ./
         with:
          storeLink: "https://store.arabhardware.net/"

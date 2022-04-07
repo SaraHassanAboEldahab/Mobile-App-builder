@@ -1,9 +1,7 @@
 import { WebView } from "react-native-webview";
-import * as core from "@actions/core";
-import github from "@actions/github";
+import appData from "./app-data.json";
 
 export default function App() {
-  const uri = core.getInput("storeLink", { required: true });
-  // const uri = "https://store.arabhardware.net/";
+  const uri = appData?.url;
   return <WebView source={{ uri }} />;
 }
