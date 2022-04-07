@@ -5,8 +5,8 @@ export default {
   image: process.env.image,
   foregroundImage: process.env.adaptiveIcon,
   slug: process.env.bundleIdentifier,
-  package: `${process.env.bundleIdentifier}.App`,
-  bundleIdentifier: `${process.env.bundleIdentifier}.App`,
+  "android.package": `${process.env.bundleIdentifier}.App`,
+  "ios.bundleIdentifier": `${process.env.bundleIdentifier}.App`,
   extra: {
     url: process.env.url,
   },

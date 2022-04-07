@@ -84,7 +84,6 @@ jobs:
           file_name: .env
 
   Build-for-android:
-    # if: ${{ false }} # disable android for now TODO: remove this
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
@@ -134,7 +133,7 @@ jobs:
           priority: low
 
   build-for-IOS:
-    if: ${{ false }} # disable ios for now TODO: remove this
+    if: ${{ false }} # disa ble ios for now TODO: remove this
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
