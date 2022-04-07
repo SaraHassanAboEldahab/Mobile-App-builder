@@ -23,7 +23,7 @@ on:
         default: "https://raw.githubusercontent.com/MoatazAbdAlmageed/First-Mobile-App/main/assets/splash.png"
         required: true
         type: string
-      adaptive-icon:
+      adaptiveIcon:
         description: "Application adaptive-icon"
         default: "https://raw.githubusercontent.com/MoatazAbdAlmageed/First-Mobile-App/main/assets/adaptive-icon.png"
         required: true
@@ -36,12 +36,12 @@ jobs:
           echo "url: $url"
           echo "icon: $icon"
           echo "splash: $splash"
-          echo "adaptive-icon: $adaptive-icon"
+          echo "adaptiveIcon: $adaptiveIcon"
         env:
           url: ${{ github.event.inputs.url }}
           icon: ${{ github.event.inputs.icon }}
           splash: ${{ github.event.inputs.splash }}
-          adaptive-icon: ${{ github.event.inputs.adaptive-icon }}
+          adaptiveIcon: ${{ github.event.inputs.adaptiveIcon }}
 
   Build-for-android:
     if: ${{ false }} # disable android for now TODO: remove this
