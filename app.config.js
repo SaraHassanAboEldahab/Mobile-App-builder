@@ -31,6 +31,7 @@ export default ({ config }) => {
       bundleIdentifier,
     },
     extra: {
+      ...config.extra,
       url,
     },
   };
