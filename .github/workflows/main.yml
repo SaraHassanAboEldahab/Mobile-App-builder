@@ -51,19 +51,14 @@ on:
 jobs:
   Build-for-android:
     runs-on: ubuntu-latest
+    env:
+      APP_NAME: ${{ github.event.inputs.appName }}
+      SLUG: ${{ github.event.inputs.slug }}
+      URL: ${{ github.event.inputs.url }}
+      ICON: ${{ github.event.inputs.icon }}
+      SPLASH: ${{ github.event.inputs.splash }}
+      ADAPTIVE_ICON: ${{ github.event.inputs.adaptiveIcon }}
     steps:
-      - name: Create .env file
-        uses: SpicyPizza/create-envfile@v1
-        with:
-          envkey_APP_NAME: ${{ github.event.inputs.appName }}
-          envkey_SLUG: ${{ github.event.inputs.slug }}
-          envkey_URL: ${{ github.event.inputs.url }}
-          envkey_ICON: ${{ github.event.inputs.icon }}
-          envkey_SPLASH: ${{ github.event.inputs.splash }}
-          envkey_ADAPTIVE_ICON: ${{ github.event.inputs.adaptiveIcon }}
-          file_name: .env
-      - name: TEMP show .env content #TODO Remove this
-        run: cat .env
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
@@ -111,10 +106,16 @@ jobs:
           priority: low
 
   build-for-IOS:
-    if: ${{ false }} # disa ble ios for now TODO: remove this
+    if: ${{ false }} # disable ios for now TODO: remove this
     runs-on: macos-latest
+    env:
+      APP_NAME: ${{ github.event.inputs.appName }}
+      SLUG: ${{ github.event.inputs.slug }}
+      URL: ${{ github.event.inputs.url }}
+      ICON: ${{ github.event.inputs.icon }}
+      SPLASH: ${{ github.event.inputs.splash }}
+      ADAPTIVE_ICON: ${{ github.event.inputs.adaptiveIcon }}
     steps:
-      # TODO: Create .env file
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:

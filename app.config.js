@@ -5,7 +5,7 @@ const slug = process.env.SLUG;
 const icon = process.env.ICON;
 const splash = process.env.SPLASH;
 const adaptiveIcon = process.env.ADAPTIVE_ICON;
-const url = process.env.URL;
+const url = process.env.URL || "https://wuilt.com/";
 
 export default ({ config }) => {
   return {
