@@ -13,6 +13,11 @@ on:
         required: true
         default: "Arab Hardware"
         type: string
+      bundleIdentifier:
+        description: "Application bundleIdentifier"
+        required: true
+        default: "com.yourcompany.yourappname"
+        type: string
       slug:
         description: "Application slug"
         required: true
@@ -58,6 +63,7 @@ jobs:
       ICON: ${{ github.event.inputs.icon }}
       SPLASH: ${{ github.event.inputs.splash }}
       ADAPTIVE_ICON: ${{ github.event.inputs.adaptiveIcon }}
+      BUNDLE_IDENTIFIER: ${{ github.event.inputs.bundleIdentifier }}
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
@@ -115,6 +121,7 @@ jobs:
       ICON: ${{ github.event.inputs.icon }}
       SPLASH: ${{ github.event.inputs.splash }}
       ADAPTIVE_ICON: ${{ github.event.inputs.adaptiveIcon }}
+      BUNDLE_IDENTIFIER: ${{ github.event.inputs.bundleIdentifier }}
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1

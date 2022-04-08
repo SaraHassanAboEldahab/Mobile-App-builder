@@ -5,6 +5,7 @@ const slug = process.env.SLUG;
 const icon = process.env.ICON;
 const splash = process.env.SPLASH;
 const adaptiveIcon = process.env.ADAPTIVE_ICON;
+const bundleIdentifier = process.env.BUNDLE_IDENTIFIER;
 const url = process.env.URL || "https://wuilt.com/";
 
 export default ({ config }) => {
@@ -23,6 +24,11 @@ export default ({ config }) => {
         ...config.android.adaptiveIcon,
         foregroundImage: adaptiveIcon,
       },
+      package: bundleIdentifier,
+    },
+    ios: {
+      ...config.ios,
+      bundleIdentifier,
     },
     extra: {
       url,
