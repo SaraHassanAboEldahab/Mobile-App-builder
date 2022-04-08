@@ -1,11 +1,13 @@
-const core = require("@actions/core");
-const name = core.getInput("appName");
-const slug = core.getInput("slug");
-const icon = core.getInput("icon");
-const image = core.getInput("image");
-const bundleIdentifier = core.getInput("bundleIdentifier");
-const adaptiveIcon = core.getInput("adaptiveIcon");
-const url = core.getInput("url");
+import "dotenv/config";
+
+const name = process.env.appName;
+const slug = process.env.slug;
+const icon = process.env.icon;
+const image = process.env.image;
+const bundleIdentifier = process.env.bundleIdentifier;
+const adaptiveIcon = process.env.adaptiveIcon;
+const url = process.env.url;
+
 export default ({ config }) => {
   return {
     ...config,

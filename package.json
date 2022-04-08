@@ -10,6 +10,7 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "dotenv": "^16.0.0",
     "expo": "~44.0.0",
     "expo-status-bar": "~1.2.0",
     "expo-updates": "~0.11.6",
@@ -20,7 +21,6 @@
     "react-native-webview": "11.15.0"
   },
   "devDependencies": {
-    "@actions/core": "^1.6.0",
     "@actions/github": "^5.0.1",
     "@babel/core": "^7.12.9"
   },
