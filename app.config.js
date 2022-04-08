@@ -1,13 +1,24 @@
 export default ({ config }) => {
-  config.name = process.env.appName;
-  config.slug = process.env.slug;
-  config.icon = process.env.icon;
-  config.splash.image = process.env.image;
-  config.android.adaptiveIcon.foregroundImage = process.env.adaptiveIcon;
-  config.android.package = `${process.env.bundleIdentifier}.App`;
-  config.ios.bundleIdentifier = `${process.env.bundleIdentifier}.App`;
   return {
     ...config,
+    name: process.env.appName,
+    slug: process.env.slug,
+    icon: process.env.icon,
+    splash: {
+      ...config.splash,
+      image: process.env.image,
+    },
+    android: {
+      ...config.android,
+      package: `${process.env.bundleIdentifier}.App`,
+      adaptiveIcon: {
+        ...config.android.adaptiveIcon,
+        foregroundImage: process.env.adaptiveIcon,
+      },
+    },
+    ios: {
+      bundleIdentifier: `${process.env.bundleIdentifier}.App`,
+    },
     extra: {
       url: process.env.url,
     },
