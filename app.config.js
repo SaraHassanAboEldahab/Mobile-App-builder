@@ -1,12 +1,11 @@
 import "dotenv/config";
 
-const name = process.env.appName;
-const slug = process.env.slug;
-const icon = process.env.icon;
-const image = process.env.image;
-const bundleIdentifier = process.env.bundleIdentifier;
-const adaptiveIcon = process.env.adaptiveIcon;
-const url = process.env.url;
+const name = process.env.APP_NAME;
+const slug = process.env.SLUG;
+const icon = process.env.ICON;
+const splash = process.env.SPLASH;
+const adaptiveIcon = process.env.ADAPTIVE_ICON;
+const url = process.env.URL;
 
 export default ({ config }) => {
   return {
@@ -16,7 +15,7 @@ export default ({ config }) => {
     icon,
     splash: {
       ...config.splash,
-      image,
+      image: splash,
     },
     android: {
       ...config.android,
@@ -24,14 +23,8 @@ export default ({ config }) => {
         ...config.android.adaptiveIcon,
         foregroundImage: adaptiveIcon,
       },
-      // package: bundleIdentifier,
-    },
-    ios: {
-      ...config.ios,
-      bundleIdentifier,
     },
     extra: {
-      // ...config.extra,
       url,
     },
   };
