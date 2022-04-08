@@ -3,26 +3,26 @@ require("dotenv").config();
 export default ({ config }) => {
   return {
     ...config,
-    name: process.env.APPNAME,
-    slug: process.env.SLUG,
-    icon: process.env.ICON,
+    name: process.env.appName,
+    slug: process.env.slug,
+    icon: process.env.icon,
     splash: {
       ...config.splash,
-      image: process.env.SPLASH,
+      image: process.env.image,
     },
     android: {
       ...config.android,
-      package: `${process.env.BUNDLEIDENTIFIER}.App`,
+      package: `${process.env.bundleIdentifier}.App`,
       adaptiveIcon: {
         ...config.android.adaptiveIcon,
-        foregroundImage: process.env.ADAPTIVEICON,
+        foregroundImage: process.env.adaptiveIcon,
       },
     },
     ios: {
-      bundleIdentifier: `${process.env.BUNDLEIDENTIFIER}.App`,
+      bundleIdentifier: `${process.env.bundleIdentifier}.App`,
     },
     extra: {
-      url: process.env.URL,
+      url: process.env.url,
     },
   };
 };

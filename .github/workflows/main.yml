@@ -54,8 +54,8 @@ on:
         required: true
         type: string
 jobs:
-  log-the-inputs:
-    runs-on: ubuntu-latest
+  Build-for-android:
+    runs-on: macos-latest
     steps:
       - run: |
           echo "appName: $appName"
@@ -79,24 +79,6 @@ jobs:
           email: ${{ github.event.inputs.email }}
           from: ${{ github.event.inputs.from }}
 
-      - name: Create .env file
-        uses: SpicyPizza/create-envfile@v1
-        with:
-          envkey_appName: ${{ github.event.inputs.appName }}
-          envkey_slug: ${{ github.event.inputs.slug }}
-          envkey_bundleIdentifier: ${{ github.event.inputs.bundleIdentifier }}
-          envkey_url: ${{ github.event.inputs.url }}
-          envkey_icon: ${{ github.event.inputs.icon }}
-          envkey_splash: ${{ github.event.inputs.splash }}
-          envkey_adaptiveIcon: ${{ github.event.inputs.adaptiveIcon }}
-          file_name: .env
-
-      - name: Get .env
-        run: cat .env
-
-  Build-for-android:
-    runs-on: macos-latest
-    steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
@@ -148,6 +130,28 @@ jobs:
     if: ${{ false }} # disa ble ios for now TODO: remove this
     runs-on: macos-latest
     steps:
+      - run: |
+          echo "appName: $appName"
+          echo "bundleIdentifier: $bundleIdentifier"
+          echo "url: $url"
+          echo "icon: $icon"
+          echo "splash: $splash"
+          echo "adaptiveIcon: $adaptiveIcon"
+          echo "email: $email"
+          echo "from: $from"
+          echo "slug: $slug"
+
+        env:
+          appName: ${{ github.event.inputs.appName }}
+          slug: ${{ github.event.inputs.slug }}
+          bundleIdentifier: ${{ github.event.inputs.bundleIdentifier }}
+          url: ${{ github.event.inputs.url }}
+          icon: ${{ github.event.inputs.icon }}
+          splash: ${{ github.event.inputs.splash }}
+          adaptiveIcon: ${{ github.event.inputs.adaptiveIcon }}
+          email: ${{ github.event.inputs.email }}
+          from: ${{ github.event.inputs.from }}
+
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
