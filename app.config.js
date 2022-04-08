@@ -1,11 +1,11 @@
 const core = require("@actions/core");
-const name = core.getInput("appName", { required: true });
-const slug = core.getInput("slug", { required: true });
-const icon = core.getInput("icon", { required: true });
-const image = core.getInput("image", { required: true });
-const bundleIdentifier = core.getInput("bundleIdentifier", { required: true });
-const adaptiveIcon = core.getInput("adaptiveIcon", { required: true });
-const url = core.getInput("url", { required: true });
+const name = core.getInput("appName");
+const slug = core.getInput("slug");
+const icon = core.getInput("icon");
+const image = core.getInput("image");
+const bundleIdentifier = core.getInput("bundleIdentifier");
+const adaptiveIcon = core.getInput("adaptiveIcon");
+const url = core.getInput("url");
 export default ({ config }) => {
   return {
     ...config,
