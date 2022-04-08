@@ -50,7 +50,7 @@ on:
         type: string
 jobs:
   Build-for-android:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Create .env file
         uses: SpicyPizza/create-envfile@v1
@@ -112,20 +112,9 @@ jobs:
 
   build-for-IOS:
     if: ${{ false }} # disa ble ios for now TODO: remove this
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     steps:
-      - name: Create .env file
-        uses: SpicyPizza/create-envfile@v1
-        with:
-          envkey_APP_NAME: ${{ github.event.inputs.appName }}
-          envkey_SLUG: ${{ github.event.inputs.slug }}
-          envkey_URL: ${{ github.event.inputs.url }}
-          envkey_ICON: ${{ github.event.inputs.icon }}
-          envkey_SPLASH: ${{ github.event.inputs.splash }}
-          envkey_ADAPTIVE_ICON: ${{ github.event.inputs.adaptiveIcon }}
-          file_name: .env
-      - name: TEMP show .env content #TODO Remove this
-        run: cat .env
+      # TODO: Create .env file
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
