@@ -9,7 +9,6 @@ const url = core.getInput("url");
 export default ({ config }) => {
   return {
     ...config,
-    package: bundleIdentifier,
     name,
     slug,
     icon,
