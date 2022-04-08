@@ -57,28 +57,6 @@ jobs:
   Build-for-android:
     runs-on: macos-latest
     steps:
-      - run: |
-          echo "appName: $appName"
-          echo "bundleIdentifier: $bundleIdentifier"
-          echo "url: $url"
-          echo "icon: $icon"
-          echo "splash: $splash"
-          echo "adaptiveIcon: $adaptiveIcon"
-          echo "email: $email"
-          echo "from: $from"
-          echo "slug: $slug"
-
-        env:
-          appName: ${{ github.event.inputs.appName }}
-          slug: ${{ github.event.inputs.slug }}
-          bundleIdentifier: ${{ github.event.inputs.bundleIdentifier }}
-          url: ${{ github.event.inputs.url }}
-          icon: ${{ github.event.inputs.icon }}
-          splash: ${{ github.event.inputs.splash }}
-          adaptiveIcon: ${{ github.event.inputs.adaptiveIcon }}
-          email: ${{ github.event.inputs.email }}
-          from: ${{ github.event.inputs.from }}
-
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
@@ -121,37 +99,15 @@ jobs:
           # Optional whether this connection use TLS (default is true if server_port is 465)
           secure: true
           # Optional plain body:
-          body: Build job of ${{github.repository}} completed successfully! ${{ steps.log.outputs.log }}
+          body: Build android completed successfully! ${{ steps.log.outputs.log }}
           # Optional HTML body read from file:
-          html_body: Build job of ${{github.repository}} completed successfully! ${{ steps.log.outputs.log }}
+          html_body: Build android completed successfully! ${{ steps.log.outputs.log }}
           priority: low
 
   build-for-IOS:
     if: ${{ false }} # disa ble ios for now TODO: remove this
     runs-on: macos-latest
     steps:
-      - run: |
-          echo "appName: $appName"
-          echo "bundleIdentifier: $bundleIdentifier"
-          echo "url: $url"
-          echo "icon: $icon"
-          echo "splash: $splash"
-          echo "adaptiveIcon: $adaptiveIcon"
-          echo "email: $email"
-          echo "from: $from"
-          echo "slug: $slug"
-
-        env:
-          appName: ${{ github.event.inputs.appName }}
-          slug: ${{ github.event.inputs.slug }}
-          bundleIdentifier: ${{ github.event.inputs.bundleIdentifier }}
-          url: ${{ github.event.inputs.url }}
-          icon: ${{ github.event.inputs.icon }}
-          splash: ${{ github.event.inputs.splash }}
-          adaptiveIcon: ${{ github.event.inputs.adaptiveIcon }}
-          email: ${{ github.event.inputs.email }}
-          from: ${{ github.event.inputs.from }}
-
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
@@ -204,7 +160,7 @@ jobs:
           # Optional whether this connection use TLS (default is true if server_port is 465)
           secure: true
           # Optional plain body:
-          body: Build job of ${{github.repository}} completed successfully! ${{ steps.log.outputs.log }}
+          body: Build ios completed successfully! ${{ steps.log.outputs.log }}
           # Optional HTML body read from file:
-          html_body: Build job of ${{github.repository}} completed successfully! ${{ steps.log.outputs.log }}
+          html_body: Build ios completed successfully! ${{ steps.log.outputs.log }}
           priority: low
