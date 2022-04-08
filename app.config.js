@@ -18,14 +18,14 @@ export default ({ config }) => {
     },
     android: {
       ...config.android,
-      package: `${bundleIdentifier}.App`,
+      package: bundleIdentifier,
       adaptiveIcon: {
         ...config.android.adaptiveIcon,
         foregroundImage: adaptiveIcon,
       },
     },
     ios: {
-      bundleIdentifier: `${bundleIdentifier}.App`,
+      bundleIdentifier: bundleIdentifier,
     },
     extra: {
       url,

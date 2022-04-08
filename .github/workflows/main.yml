@@ -21,7 +21,7 @@ on:
       bundleIdentifier:
         description: "Application bundleIdentifier"
         required: true
-        default: "ArabHardware"
+        default: "com.example.app"
         type: string
       url:
         description: "Store URL"
