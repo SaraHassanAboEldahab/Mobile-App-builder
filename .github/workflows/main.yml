@@ -116,7 +116,7 @@ jobs:
       - name: Get build-android.log
         id: log
         # TODO extract download link
-        run: echo ::set-output name=log::$(cat build-android.log | sed 's/^.*Successfully built standalone app/Download Link/')
+        run: echo ::set-output name=log::S$(cat build-android.log | cut -f2 -d "S")
       - uses: dawidd6/action-send-mail@v3.6.1
         with:
           # Required mail server address:
