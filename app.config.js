@@ -24,14 +24,14 @@ export default ({ config }) => {
         ...config.android.adaptiveIcon,
         foregroundImage: adaptiveIcon,
       },
-      package: bundleIdentifier,
+      // package: bundleIdentifier,
     },
     ios: {
       ...config.ios,
       bundleIdentifier,
     },
     extra: {
-      ...config.extra,
+      // ...config.extra,
       url,
     },
   };

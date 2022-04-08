@@ -21,7 +21,7 @@ on:
       bundleIdentifier:
         description: "Application bundleIdentifier"
         required: true
-        default: "com.example.app"
+        default: "com.yourcompany.yourappname"
         type: string
       url:
         description: "Store URL"
