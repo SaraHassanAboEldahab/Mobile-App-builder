@@ -91,6 +91,9 @@ jobs:
           envkey_adaptiveIcon: ${{ github.event.inputs.adaptiveIcon }}
           file_name: .env
 
+      - name: Get .env
+        run: cat .env
+
   Build-for-android:
     runs-on: macos-latest
     steps:
