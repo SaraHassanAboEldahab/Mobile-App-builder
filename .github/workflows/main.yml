@@ -11,17 +11,22 @@ on:
       appName:
         description: "Application name"
         required: true
-        default: "Sarah"
+        default: "Arab Hardware"
         type: string
       bundleIdentifier:
         description: "Application bundleIdentifier"
         required: true
-        default: "Sarah"
+        default: "com.yourcompany.yourappname"
+        type: string
+      slug:
+        description: "Application slug"
+        required: true
+        default: "arab-hardware-app"
         type: string
       url:
         description: "Store URL"
         required: true
-        default: "https://sarah-8.wuiltstore.com"
+        default: "https://store.arabhardware.net/"
         type: string
       icon:
         description: "Application icon"
@@ -49,42 +54,16 @@ on:
         required: true
         type: string
 jobs:
-  log-the-inputs:
-    runs-on: ubuntu-latest
-    steps:
-      - run: |
-          echo "appName: $appName"
-          echo "bundleIdentifier: $bundleIdentifier"
-          echo "url: $url"
-          echo "icon: $icon"
-          echo "splash: $splash"
-          echo "adaptiveIcon: $adaptiveIcon"
-          echo "email: $email"
-          echo "from: $from"
-
-        env:
-          appName: ${{ github.event.inputs.appName }}
-          bundleIdentifier: ${{ github.event.inputs.bundleIdentifier }}
-          url: ${{ github.event.inputs.url }}
-          icon: ${{ github.event.inputs.icon }}
-          splash: ${{ github.event.inputs.splash }}
-          adaptiveIcon: ${{ github.event.inputs.adaptiveIcon }}
-          email: ${{ github.event.inputs.email }}
-          from: ${{ github.event.inputs.from }}
-
-      - name: Create .env file
-        uses: SpicyPizza/create-envfile@v1
-        with:
-          envkey_appName: ${{ github.event.inputs.appName }}
-          envkey_bundleIdentifier: ${{ github.event.inputs.bundleIdentifier }}
-          envkey_url: ${{ github.event.inputs.url }}
-          envkey_icon: ${{ github.event.inputs.icon }}
-          envkey_splash: ${{ github.event.inputs.splash }}
-          envkey_adaptiveIcon: ${{ github.event.inputs.adaptiveIcon }}
-          file_name: .env
-
   Build-for-android:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
+    env:
+      APP_NAME: ${{ github.event.inputs.appName }}
+      SLUG: ${{ github.event.inputs.slug }}
+      URL: ${{ github.event.inputs.url }}
+      ICON: ${{ github.event.inputs.icon }}
+      SPLASH: ${{ github.event.inputs.splash }}
+      ADAPTIVE_ICON: ${{ github.event.inputs.adaptiveIcon }}
+      BUNDLE_IDENTIFIER: ${{ github.event.inputs.bundleIdentifier }}
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
@@ -104,10 +83,10 @@ jobs:
         run: yarn install
       - name: Build Android APK Bundle
         run: expo build:android > build-android.log
-
       - name: Get build-android.log
         id: log
-        run: echo ::set-output name=log::$(cat build-android.log)
+        # TODO extract download link
+        run: echo ::set-output name=log::$(awk -F  'Successfully built standalone app:' '{print $2 "."}' build-android.log)
       - uses: dawidd6/action-send-mail@v3.6.1
         with:
           # Required mail server address:
@@ -127,14 +106,22 @@ jobs:
           # Optional whether this connection use TLS (default is true if server_port is 465)
           secure: true
           # Optional plain body:
-          body: Build job of ${{github.repository}} completed successfully! ${{ steps.log.outputs.log }}
+          body: Build android completed successfully! ${{ steps.log.outputs.log }}
           # Optional HTML body read from file:
-          html_body: Build job of ${{github.repository}} completed successfully! ${{ steps.log.outputs.log }}
+          html_body: Build android completed successfully! ${{ steps.log.outputs.log }}
           priority: low
 
   build-for-IOS:
-    if: ${{ false }} # disa ble ios for now TODO: remove this
+    if: ${{ false }} # disable ios for now TODO: remove this
     runs-on: macos-latest
+    env:
+      APP_NAME: ${{ github.event.inputs.appName }}
+      SLUG: ${{ github.event.inputs.slug }}
+      URL: ${{ github.event.inputs.url }}
+      ICON: ${{ github.event.inputs.icon }}
+      SPLASH: ${{ github.event.inputs.splash }}
+      ADAPTIVE_ICON: ${{ github.event.inputs.adaptiveIcon }}
+      BUNDLE_IDENTIFIER: ${{ github.event.inputs.bundleIdentifier }}
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
@@ -152,7 +139,6 @@ jobs:
           apple-id: ${{ secrets.EXPO_APPLE_ID }} # Apple ID to download from Apple Developer when Xcode not available in local
           apple-id-password: ${{ secrets.EXPO_APPLE_PASSWORD }}
       - uses: expo/expo-github-action@v7
-        id: ios
         with:
           expo-version: latest
           eas-version: latest
@@ -188,7 +174,7 @@ jobs:
           # Optional whether this connection use TLS (default is true if server_port is 465)
           secure: true
           # Optional plain body:
-          body: Build job of ${{github.repository}} completed successfully! ${{ steps.log.outputs.log }}
+          body: Build ios completed successfully! ${{ steps.log.outputs.log }}
           # Optional HTML body read from file:
-          html_body: Build job of ${{github.repository}} completed successfully! ${{ steps.log.outputs.log }}
+          html_body: Build ios completed successfully! ${{ steps.log.outputs.log }}
           priority: low
