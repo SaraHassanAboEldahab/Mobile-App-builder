@@ -21,7 +21,7 @@ on:
       slug:
         description: "Application slug"
         required: true
-        default: "arab-hardware-app1"
+        default: "arab-hardware-app"
         type: string
       url:
         description: "Store URL"
