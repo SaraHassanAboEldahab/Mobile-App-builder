@@ -1508,6 +1508,13 @@
     sudo-prompt "^9.0.0"
     wcwidth "^1.0.1"
 
+"@react-native-community/react-native-cookies@^1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@react-native-community/react-native-cookies/-/react-native-cookies-1.1.1.tgz#552ba779a4a941aaa1c476681c2b65d3ac4fbf6d"
+  integrity sha512-XA5IMvlrtjZ0sGvXiAgm+2xu30DlL7XbKeL1O3JXE5ETyqYCm4B0uEC38ShRxUn3Hl6WXMjf2V0QHfqjt0LQlQ==
+  dependencies:
+    invariant "^2.2.4"
+
 "@react-native/assets@1.0.0":
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@react-native/assets/-/assets-1.0.0.tgz#c6f9bf63d274bafc8e970628de24986b30a55c8e"
