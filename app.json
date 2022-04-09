@@ -16,14 +16,14 @@
     "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "Arabhardware.App"
+      "bundleIdentifier": "com.wuilt.arabhardware"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "Arabhardware.App"
+      "package": "com.wuilt.arabhardware"
     },
     "web": {
       "favicon": "./assets/favicon.png"
