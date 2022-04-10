@@ -19,21 +19,28 @@ true;
     }
   };
 
-  const onMessage = (event) => {
-    const { data } = event.nativeEvent;
+  // const onMessage = (event) => {
+  //   const { data } = event.nativeEvent;
 
-    if (data.includes("Cookie:")) {
-      // process the cookies
-      CookieManager.get(uri, true);
-    }
-  };
+  //   if (data.includes("Cookie:")) {
+  //     // process the cookies
+  //     return CookieManager.get(uri, true);
+  //   }
+  // };
+
+  console.log("first");
 
   return (
     <WebView
-      source={{ uri }}
+      source={{
+        uri,
+        headers: {
+          Cookie: CookieManager.get(uri, true),
+        },
+      }}
       ref={webViewRef}
       onNavigationStateChange={onNavigationStateChange}
-      onMessage={onMessage}
+      // onMessage={onMessage}
       sharedCookiesEnabled
     />
   );
