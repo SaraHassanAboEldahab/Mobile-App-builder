@@ -11,7 +11,7 @@ on:
       appName:
         description: "Application name"
         required: true
-        default: "Arab Hardware"
+        default: "Sarah Store"
         type: string
       bundleIdentifier:
         description: "Application bundleIdentifier"
@@ -21,36 +21,31 @@ on:
       slug:
         description: "Application slug"
         required: true
-        default: "arab-hardware-app"
+        default: "Sarah-App"
         type: string
       url:
         description: "Store URL"
         required: true
-        default: "https://store.arabhardware.net/"
+        default: "https://sarah-10.wuiltstore.com/"
         type: string
       icon:
         description: "Application icon"
-        default: "https://raw.githubusercontent.com/MoatazAbdAlmageed/First-Mobile-App/main/assets/icon.png"
-        required: true
+        default: "https://raw.githubusercontent.com/SaraHassanAboEldahab/Mobile-App-builder/main/assets/icon.png"
+        required: false
         type: string
       splash:
         description: "Application splash"
-        default: "https://raw.githubusercontent.com/MoatazAbdAlmageed/First-Mobile-App/main/assets/splash.png"
-        required: true
+        default: " "
+        required: false
         type: string
       adaptiveIcon:
         description: "Application adaptive-icon"
-        default: "https://raw.githubusercontent.com/MoatazAbdAlmageed/First-Mobile-App/main/assets/adaptive-icon.png"
-        required: true
+        default: " "
+        required: false
         type: string
       email:
         description: "Application owner email"
-        default: "moataz@wuilt.com"
-        required: true
-        type: string
-      from:
-        description: "Application owner name"
-        default: "Moataz Mohammady"
+        default: "s.aboeldahab@wuilt.com"
         required: true
         type: string
 jobs:
@@ -82,7 +77,7 @@ jobs:
       - name: Install deps
         run: yarn install
       - name: Build Android APK Bundle
-        run: expo build:android > build-android.log
+        run: yarn build:android > build-android.log
       - name: Get build-android.log
         id: log
         # TODO extract download link
@@ -102,7 +97,7 @@ jobs:
           # Required recipients' addresses:
           to: ${{ github.event.inputs.email }}
           # Required sender full name (address can be skipped):
-          from: ${{ github.event.inputs.from }}
+          from: WUilt
           # Optional whether this connection use TLS (default is true if server_port is 465)
           secure: true
           # Optional plain body:
@@ -146,7 +141,7 @@ jobs:
       - name: Install deps
         run: yarn install
       - name: Build iOS app
-        run: expo build:ios  > build-ios.log
+        run: yarn build:ios  > build-ios.log
         env:
           EXPO_APPLE_ID: ${{secrets.EXPO_APPLE_ID}}
           EXPO_APPLE_PASSWORD: ${{ secrets.EXPO_APPLE_PASSWORD }}
@@ -170,7 +165,7 @@ jobs:
           # Required recipients' addresses:
           to: ${{ github.event.inputs.email }}
           # Required sender full name (address can be skipped):
-          from: ${{ github.event.inputs.from }}
+          from: WUilt
           # Optional whether this connection use TLS (default is true if server_port is 465)
           secure: true
           # Optional plain body:
