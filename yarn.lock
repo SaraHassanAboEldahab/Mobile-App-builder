@@ -2,13 +2,6 @@
 # yarn lockfile v1
 
 
-"@actions/core@^1.6.0":
-  version "1.6.0"
-  resolved "https://registry.yarnpkg.com/@actions/core/-/core-1.6.0.tgz#0568e47039bfb6a9170393a73f3b7eb3b22462cb"
-  integrity sha512-NB1UAZomZlCV/LmJqkLhNTqtKfFXJZAUPcfl/zqG7EfsQdeUJtaWO98SGbuQ3pydJ3fHl2CvI/51OKYlCYYcaw==
-  dependencies:
-    "@actions/http-client" "^1.0.11"
-
 "@actions/github@^5.0.1":
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/@actions/github/-/github-5.0.1.tgz#5fdbe371d9a592038668be95d12421361585fba1"
@@ -1508,20 +1501,6 @@
     sudo-prompt "^9.0.0"
     wcwidth "^1.0.1"
 
-"@react-native-community/cookies@^5.0.1":
-  version "5.0.1"
-  resolved "https://registry.yarnpkg.com/@react-native-community/cookies/-/cookies-5.0.1.tgz#1ffeefc31d51b7296ae0b5bfb249deb43fcbbcea"
-  integrity sha512-Is/kWBmYBFtX4DOImfglK5Bz2w3PdpgMGTqdVQSbZlFdSDw32lwFMk1mLSAzL5EcUEDwJJbcEATbU3JGSZSVXw==
-  dependencies:
-    invariant "^2.2.4"
-
-"@react-native-community/react-native-cookies@^1.1.1":
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/@react-native-community/react-native-cookies/-/react-native-cookies-1.1.1.tgz#552ba779a4a941aaa1c476681c2b65d3ac4fbf6d"
-  integrity sha512-XA5IMvlrtjZ0sGvXiAgm+2xu30DlL7XbKeL1O3JXE5ETyqYCm4B0uEC38ShRxUn3Hl6WXMjf2V0QHfqjt0LQlQ==
-  dependencies:
-    invariant "^2.2.4"
-
 "@react-native/assets@1.0.0":
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@react-native/assets/-/assets-1.0.0.tgz#c6f9bf63d274bafc8e970628de24986b30a55c8e"
@@ -2591,7 +2570,7 @@ expo-asset@~8.4.6:
     path-browserify "^1.0.0"
     url-parse "^1.4.4"
 
-expo-constants@^13.0.2, expo-constants@~13.0.2:
+expo-constants@~13.0.2:
   version "13.0.2"
   resolved "https://registry.yarnpkg.com/expo-constants/-/expo-constants-13.0.2.tgz#b489ecd575cc82a9a0b3dfbf2385d45a44300eb1"
   integrity sha512-vGs/kI65vplPFvG8z4W1ariGEtVHHp9Avl28G0zJprt2v/q1E/BnXjwvFSBPc1GB+Zb/7crWSHWRwjaFULBjsg==

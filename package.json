@@ -3,19 +3,17 @@
   "version": "1.0.0",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
-    "replace": "node replace.js",
     "start": "expo start",
     "android": "expo start --android",
+    "build:android": "expo build:android",
     "ios": "expo start --ios",
+    "build:ios": "expo build:ios",
     "web": "expo start --web",
     "eject": "expo eject"
   },
   "dependencies": {
-    "@react-native-community/cookies": "^5.0.1",
-    "@react-native-community/react-native-cookies": "^1.1.1",
     "dotenv": "^16.0.0",
     "expo": "~44.0.0",
-    "expo-constants": "^13.0.2",
     "expo-status-bar": "~1.2.0",
     "expo-updates": "~0.11.6",
     "react": "17.0.1",
@@ -25,7 +23,6 @@
     "react-native-webview": "11.15.0"
   },
   "devDependencies": {
-    "@actions/core": "^1.6.0",
     "@actions/github": "^5.0.1",
     "@babel/core": "^7.12.9"
   },

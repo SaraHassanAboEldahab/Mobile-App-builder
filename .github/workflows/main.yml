@@ -35,12 +35,12 @@ on:
         type: string
       splash:
         description: "Application splash"
-        default: "https://raw.githubusercontent.com/SaraHassanAboEldahab/Mobile-App-builder/main/assets/icon.png"
+        default: " "
         required: false
         type: string
       adaptiveIcon:
         description: "Application adaptive-icon"
-        default: "https://raw.githubusercontent.com/SaraHassanAboEldahab/Mobile-App-builder/main/assets/icon.png"
+        default: " "
         required: false
         type: string
       email:
